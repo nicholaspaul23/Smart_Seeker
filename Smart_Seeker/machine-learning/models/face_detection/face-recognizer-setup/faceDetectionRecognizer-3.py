@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import os 
 #Part 3
-#This code will run a camera and use the training data to determine who you are
+#This code will run camera for facial detection and use the training data to determine who you are
 
 '''
 First the image of the current user is taken
