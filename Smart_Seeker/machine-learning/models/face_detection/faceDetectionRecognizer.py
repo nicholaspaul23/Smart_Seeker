@@ -1,34 +1,18 @@
 import cv2
 import numpy as np
 import os 
-#Part 3
-#This code will run a camera and use the training data to determine who you are
 
-'''
-First the image of the current user is taken
-
-Then the recognizer feeds the gray image into the predict()
-where it looks at the trainer.yml dataset and compares the two
-
-it will give a confidence based on which group of faces the current 
-face matches and returns id if found
-
-'''
-
-recognizer = cv2.face.LBPHFaceRecognizer_create()  #cv2.createLBPHFaceRecognizer()
-recognizer.read('trainer/trainer.yml')   #recognizer.load()
+recognizer = cv2.face.LBPHFaceRecognizer_create()
+recognizer.read('trainer/trainer.yml')
 cascadePath = "faceCascade.xml"
 faceCascade = cv2.CascadeClassifier(cascadePath);
 
 font = cv2.FONT_HERSHEY_SIMPLEX
 
-#iniciate id counter
 id = 0
 
-# names related to ids: example ==> Marcelo: id=1,  etc
-names = ['None', 'Nick', 'Someone2', 'Someone3', 'Z', 'W'] 
+names = ['None', 'Nick'] 
 
-# Initialize and start realtime video capture
 cam = cv2.VideoCapture(0)
 cam.set(3, 640) # set video widht
 cam.set(4, 480) # set video height
@@ -66,11 +50,11 @@ while True:
     
     cv2.imshow('camera',img) 
 
-    k = cv2.waitKey(10) & 0xff # Press 'ESC' for exiting video
+    k = cv2.waitKey(10) & 0xff
     if k == 27:
         break
 
-# Do a bit of cleanup
+# cleanup
 print("\n [INFO] Exiting Program and cleanup stuff")
 cam.release()
 cv2.destroyAllWindows()
